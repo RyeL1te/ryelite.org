@@ -75,10 +75,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import locations from '@/assets/map/Locations.json'
 import npcs from '@/assets/map/NPCs.json'
-import { useGameData } from '@/composables/useGameData'
+import npcDefinitions from '@/assets/map/NPCDefs.json'
+import entitiesData from '@/assets/map/worldEntities.json'
 
 // Props
 interface Props {
@@ -107,8 +108,6 @@ const emit = defineEmits<{
   markerCategoryToggled: [categoryName: string, visible: boolean]
   searchQueryChanged: [query: string]
 }>()
-
-const { npcDefinitions, entitiesData } = useGameData()
 
 // Reactive state
 const searchQuery = ref('')
@@ -223,7 +222,7 @@ const toggleControlsExpansion = () => {
 }
 
 // Initialize searchable items
-const initializeSearchableItems = (defs: any, entities: any) => {
+const initializeSearchableItems = () => {
   searchableItems = []
   
   // Add locations
@@ -243,7 +242,7 @@ const initializeSearchableItems = (defs: any, entities: any) => {
   
   // Add NPCs
   npcs.npcs.forEach((npc: any) => {
-    const npcDef = defs.find((def: any) => npc.npcdef_id === def._id)
+    const npcDef = npcDefinitions.npcDefs.find((def: any) => npc.npcdef_id === def._id)
     if (npcDef?.name) {
       const layer = npc.mapLevel === 0 ? 'Underworld' : 
                     npc.mapLevel === 1 ? 'Overworld' : 'Sky'
@@ -264,7 +263,7 @@ const initializeSearchableItems = (defs: any, entities: any) => {
   })
   
   // Add world entities (trees, obelisks, ores, etc.)
-  const worldEntities = (entities as any) || []
+  const worldEntities = (entitiesData as any).worldEntities || []
   worldEntities.forEach((entity: any) => {
     // Skip treestumps and burnt trees entirely - they shouldn't appear in search
     if (entity.type.includes('stump') || entity.type.includes('burnt')) {
@@ -391,11 +390,7 @@ const initializeSearchableItems = (defs: any, entities: any) => {
 }
 
 onMounted(() => {
-  watch([npcDefinitions, entitiesData], ([newDefs, newEntities]) => {
-    if (newDefs && newEntities) {
-      initializeSearchableItems(newDefs, newEntities);
-    }
-  }, { immediate: true });
+  initializeSearchableItems()
 })
 </script>
 
