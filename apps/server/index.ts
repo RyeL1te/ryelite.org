@@ -62,8 +62,6 @@ app.use(cors({
       'http://localhost:5173',
       'https://ryelite.org',
       'https://www.ryelite.org',
-      'https://highspell.com',
-      'https://www.highspell.com',
       process.env.FRONTEND_URL
     ].filter(Boolean);
     
