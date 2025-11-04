@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    image: ghcr.io/ryel1te/api:latest
+    container_name: ryelite-api
     environment:
       - NODE_ENV=production
       - DATABASE_URL=./storage/database.sqlite
@@ -17,7 +18,8 @@ services:
       - web
 
   rss-generator:
-    build: .
+    image: ghcr.io/ryel1te/api:latest
+    container_name: ryelite-rss
     environment:
       - NODE_ENV=production
       - PORT=3001
@@ -28,6 +30,7 @@ services:
 
   nginx:
     image: nginx:alpine
+    container_name: ryelite-nginx
     ports:
       - "80:80"
       - "443:443"
