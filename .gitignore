@@ -38,3 +38,6 @@ apps/server/database.sqlite
 
 # RSS Generator cache
 apps/rss-generator/cache/
+
+# Certbot challenges
+certbot/
