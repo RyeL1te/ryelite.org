@@ -25,7 +25,6 @@ COPY packages/shared ./packages/shared
 COPY apps/client ./apps/client
 COPY apps/server ./apps/server
 COPY apps/rss-generator ./apps/rss-generator
-COPY .env ./.env
 
 # Set environment variables for the build
 ENV NODE_ENV=production
