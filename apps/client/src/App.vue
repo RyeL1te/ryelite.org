@@ -32,8 +32,9 @@ const authStore = useAuthStore()
   </main>
   
   <div id="copyright">
-    <span>© 2025 Highlite. All rights reserved.</span>
-    <span>Made with ❤️ by the Highlite Team</span>
+    <span>© 2025 RyeLite. All rights reserved.</span>
+    <span>RyeLite is a continuation of the HighLite project (© 2025 Highlite).</span>
+    <span>Made with ❤️ by the RyeLite Team</span>
   </div>
 
   <div class="joinUs">

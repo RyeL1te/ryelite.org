@@ -105,7 +105,7 @@ onMounted(() => {
     </video>
     <div id="about">
       <div id="aboutContent">
-        <h1>HighLite</h1>
+        <h1>RyeLite</h1>
         <p>An open-source RuneLite-esque standalone client for High Spell</p>
         <div class="button-container">
           <button id="contribute"><Icon icon="simple-icons:github" /> Contribute </button>
